@@ -10,8 +10,8 @@ import (
 
 type ProductInterface interface {
 	IsValid() (bool, error)
-	Enabled() error
-	Disabled() error
+	Enable() error
+	Disable() error
 	GetID() string
 	GetName() string
 	GetPrice() float64
@@ -58,7 +58,7 @@ func (p *Product) IsValid() (bool, error) {
 	return true, nil
 }
 
-func (p *Product) Enabled() error {
+func (p *Product) Enable() error {
 	if p.Price >  0 {
 		p.Status = ENABLED
 		return nil
@@ -66,7 +66,7 @@ func (p *Product) Enabled() error {
 	return errors.New("price must be greater than zero")
 }
 
-func (p *Product) Disabled() error {
+func (p *Product) Disable() error {
 	if p.Price == 0 {
 		p.Status = DISABLED
 		return nil
